@@ -1,4 +1,4 @@
-import { Bell, ChevronDown } from 'lucide-react';
+import { Bell, ChevronDown, FilePenLine, FileUser, Pencil } from 'lucide-react';
 
 const Profile = () => {
   return (
@@ -33,7 +33,27 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <p className="text-black">profile</p>
+      <div className="flex items-center  flex-col bg-amber-400 w-[20%] mt-1 ">
+        <div className="bg-gray-50 justify-start w-[80%]  rounded-1xl text-black mt-2 flex items-center flex-col align-middle  text-center">
+          <div className="flex w-[90%] justify-end mt-1 ">
+            <div className="hover:bg-gray-200 p-2 hover:cursor-pointer text-center rounded-full ">
+              <FilePenLine size={18} />
+            </div>
+          </div>
+          <img src="" alt="" className="bg-black w-20 h-20 rounded-full" />
+
+          <p className="mt-2">Betsegaw Abebe</p>
+          <p className="text-xs !text-gray-600">
+            software engineer, graphics designer, web designerer
+          </p>
+          <div className="border-1 border-gray-300 w-[100%] mt-2"></div>
+          <div className="pt-2 pb-2 flex gap-2.5 text-gray-500 hover:cursor-pointer">
+            <FileUser />
+            Applied jobs
+          </div>
+        </div>
+        <p className="text-black">profile</p>
+      </div>
     </div>
   );
 };
