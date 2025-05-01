@@ -1,11 +1,6 @@
-import {
-  Bell,
-  ChevronDown,
-  ChevronUp,
-  FilePenLine,
-  FileUser,
-} from 'lucide-react';
+import { Bell, ChevronDown, FilePenLine, FileUser } from 'lucide-react';
 import { useState } from 'react';
+import CheckboxFilter from '../checkboxfilter';
 
 const Profile = () => {
   const [openExp, setOpenExp] = useState(false);
@@ -64,167 +59,25 @@ const Profile = () => {
         </div>
         <p className="text-black">profile</p>
         <div className="bg-gray-50 justify-start w-[80%]  rounded-1xl text-black mt-2 flex items-center flex-col align-middle  text-center pb-4 mb-4">
-          <div
-            onClick={() => setOpenExp(!openExp)}
-            className="flex items-center justify-center "
-          >
-            <p className="p-2.5">Experience level</p>
-            {openExp ? <ChevronUp /> : <ChevronDown />}
-          </div>
-          {openExp && (
-            <div className="">
-              <div className="flex items-center mb-2">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  Internship
-                </label>
-              </div>
-              <div className="flex items-center mb-2 ">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  Entery Level
-                </label>
-              </div>
-              <div className="flex items-center mb-2">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="checked:after:absolute checked:after:-translate-y-1 checked:after:-translate-x-1/2  text-center text-white checked:after:content-['✔'] w-4 h-4 rounded-sm appearance-none  border border-gray-400 checked:bg-blue-600 checked:border-transparent"
-                  ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  Senior
-                </label>
-              </div>
-              <div className="flex items-center mb-2 ">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  Expert level
-                </label>
-              </div>
-            </div>
-          )}
-          {/* ! */}
-          <div
-            onClick={() => setOpenType(!openType)}
-            className="flex items-center justify-center "
-          >
-            <p className="p-2.5">Job type</p>
-            {openType ? <ChevronUp /> : <ChevronDown />}
-          </div>
-          {openType && (
-            <div>
-              <div className="flex items-center mb-2">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  full-time
-                </label>
-              </div>
-              <div className="flex items-center mb-2 ">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  part-time
-                </label>
-              </div>
-              <div className="flex items-center mb-2">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  contract
-                </label>
-              </div>
-            </div>
-          )}
+          <CheckboxFilter
+            title="Experience level"
+            isOpen={openExp}
+            toggle={() => setOpenExp(!openExp)}
+            options={['Internship', 'Entry Level', 'Senior', 'Expert level']}
+          />
+          <CheckboxFilter
+            title="Job type"
+            isOpen={openType}
+            toggle={() => setOpenType(!openType)}
+            options={['full-time', 'part-time', 'contract']}
+          />
 
-          <div
-            onClick={() => setOpenStyle(!openStyle)}
-            className="flex items-center justify-center "
-          >
-            <p className="p-2.5">Work style</p>
-            {openStyle ? <ChevronUp /> : <ChevronDown />}
-          </div>
-          {openStyle && (
-            <div>
-              <div className="flex items-center mb-2">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  Onsite
-                </label>
-              </div>
-              <div className="flex items-center mb-2 ">
-                <input
-                  id="checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 rounded-sm  "
-                ></input>
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium !text-gray-500 dark:text-gray-300"
-                >
-                  Remote
-                </label>
-              </div>
-            </div>
-          )}
+          <CheckboxFilter
+            title="Work style"
+            isOpen={openStyle}
+            toggle={() => setOpenStyle(!openStyle)}
+            options={['Onsite', 'Remote']}
+          />
         </div>
       </div>
     </div>
