@@ -1,10 +1,15 @@
 import './App.css';
-import Form from './components/form';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Profile from './components/Profile/profile';
+import Login from './components/Login';
 function App() {
   return (
-    <div className="flex h-screen justify-center w-screen ">
-      <Form />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

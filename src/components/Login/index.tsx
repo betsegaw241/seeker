@@ -1,9 +1,9 @@
-import { Button } from './Button';
-import InputField from './input';
+import { Button } from '../Button';
+import InputField from '../input';
 
 import { useNavigate } from "react-router-dom";
 
-export default function Form() {
+export default function Login() {
   const navigate = useNavigate();
 
   return (
