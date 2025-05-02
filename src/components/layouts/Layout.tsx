@@ -8,7 +8,7 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  const [openExp, setOpenExp] = useState(false);
+  const [openExp, setOpenExp] = useState(true);
   const [openType, setOpenType] = useState(false);
   const [openStyle, setOpenStyle] = useState(false);
 
