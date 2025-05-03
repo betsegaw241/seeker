@@ -1,4 +1,3 @@
-// components/DashboardLayout.jsx
 import { Bell, ChevronDown, FilePenLine, FileUser } from 'lucide-react';
 import { ReactNode, useState } from 'react';
 import CheckboxFilter from '../checkboxfilter';
@@ -13,28 +12,47 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [openStyle, setOpenStyle] = useState(false);
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden">
+    <div className="flex h-screen w-screen bg-slate-50 overflow-hidden">
       {/* Sidebar */}
-      <div className="flex  h-screen items-center pt-15  flex-col w-[20%] mt-1 ">
-        <div className="bg-white justify-start w-[80%]  rounded-1xl text-black mt-2 flex items-center flex-col align-middle  text-center">
-          <div className="flex w-[90%] justify-end mt-1 ">
-            <div className="hover:bg-gray-200 p-2 hover:cursor-pointer text-center rounded-full ">
-              <FilePenLine size={18} />
+      <aside className=" mt-15 w-[25%] min-w-[250px] h-full flex flex-col items-center py-4 gap-2">
+        {/* Profile Card */}
+        <div className="bg-gradient-to-br from-blue-50 to-white w-[85%] rounded-2xl shadow-lg p-5 flex flex-col items-start gap-4">
+          {/* Header Edit Icon */}
+          <div className="self-end hover:bg-blue-100 p-2 rounded-full cursor-pointer text-blue-600">
+            <FilePenLine size={20} />
+          </div>
+
+          {/* Profile Info */}
+          <div className="flex items-center gap-4">
+            <div>
+              <img
+                src=""
+                alt="Profile"
+                className="bg-gray-400 w-16 h-16 rounded-full"
+              />
+            </div>
+            <div>
+              <p className="text-lg font-semibold text-gray-800">
+                Betsegaw Abebe
+              </p>
+              <p className="text-sm text-gray-500">
+                Software Engineer • Graphic Designer • Web Designer
+              </p>
             </div>
           </div>
-          <img src="" alt="" className="bg-black w-20 h-20 rounded-full" />
 
-          <p className="mt-2">Betsegaw Abebe</p>
-          <p className="text-xs !text-gray-600">
-            software engineer, graphics designer, web designerer
-          </p>
-          <div className="border-1 border-gray-300 w-[100%] mt-2"></div>
-          <div className="pt-2 pb-2 flex gap-2.5 text-gray-500 hover:cursor-pointer">
-            <FileUser />
-            Applied jobs
+          {/* Divider */}
+          <div className="border-t border-gray-200 w-full"></div>
+
+          {/* Navigation Link */}
+          <div className="flex items-center gap-2 text-blue-600 hover:bg-blue-100 px-3 py-2 rounded-lg cursor-pointer w-full transition">
+            <FileUser size={18} />
+            <span className="text-sm font-medium">Applied Jobs</span>
           </div>
         </div>
-        <div className="overflow-y-auto bg-white justify-start w-[80%]  rounded-1xl text-black mt-2 flex items-center flex-col align-middle  text-center pb-4 mb-4">
+
+        {/* Filters */}
+        <div className="rounded-xl shadow-md overflow-y-auto bg-white justify-start w-[80%]  rounded-1xl text-black mt-2 flex items-center flex-col align-middle  text-center pb-4 mb-20">
           <CheckboxFilter
             title="Experience level"
             isOpen={openExp}
@@ -55,44 +73,39 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             options={['Onsite', 'Remote']}
           />
         </div>
-      </div>
+      </aside>
 
-      {/* Main content area */}
+      {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="flex justify-between w-[100%] p-2.5  bg-white fixed top-0 left-0">
-          <p className="text-black font-poppins font-bold text-2xl p-0 m-0">
-            GottaWork
-          </p>
-          <div className="flex gap-2">
+        <header className="bg-white shadow-sm fixed top-0 left-0 right-0 flex justify-between items-center px-6 py-3 z-10">
+          <p className="text-xl font-semibold text-gray-800">GottaWork</p>
+
+          <div className="flex items-center gap-3">
             <input
               type="text"
               placeholder="Search"
-              className="border text-gray-400 border-gray-300 rounded-2xl px-4 py-1 focus:outline-none focus:ring-none focus:ring-blue-500"
+              className="border border-gray-300 rounded-full px-4 py-1 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
-            <div className="btn bg-blue-500 border-none rounded-2xl pl-5 pr-5 text-white text-sm">
-              search
+            <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-4 py-1 text-sm shadow-sm transition">
+              Search
+            </button>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <div className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer text-gray-600">
+              <Bell size={20} />
+            </div>
+            <div className="flex items-center gap-2 hover:cursor-pointer text-gray-600">
+              <img src="" alt="pic" className="h-9 w-9 rounded-full bg-black" />
+              <p className="text-sm">Me</p>
+              <ChevronDown size={16} />
             </div>
           </div>
-          <div className="flex justify-between gap-10 mr-4">
-            <div className="flex items-center justify-center w-10 h-10 gap-1.5 text-gray-400 hover:bg-amber-100 hover:cursor-pointer rounded-full">
-              <Bell className="size-7" />
-            </div>
+        </header>
 
-            <div className="flex hover:cursor-pointer  gap-2 items-center justify-center text-gray-400">
-              <img
-                src=""
-                alt="pic"
-                className="border-amber-950 h-10 w-10 rounded-full bg-black"
-              />
-              <p className="p-0 m-0 text-gray-400">me</p>
-              <ChevronDown />
-            </div>
-          </div>
-        </div>
-
-        {/* Scrollable content area */}
-        <main className="mt-16 p-4 overflow-y-auto h-full">{children}</main>
+        {/* Content */}
+        <main className="mt-20 p-6 overflow-y-auto h-full">{children}</main>
       </div>
     </div>
   );
