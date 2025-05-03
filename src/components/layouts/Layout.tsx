@@ -105,7 +105,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </header>
 
         {/* Content */}
-        <main className="mt-20 p-6 overflow-y-auto h-full">{children}</main>
+        <main className="mt-20 overflow-y-auto h-full">{children}</main>
       </div>
     </div>
   );
