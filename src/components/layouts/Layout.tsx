@@ -2,6 +2,8 @@ import { Bell, ChevronDown, FilePenLine, FileUser } from 'lucide-react';
 import { ReactNode, useState } from 'react';
 import CheckboxFilter from '../checkboxfilter';
 
+import { useNavigate } from 'react-router-dom';
+
 interface DashboardLayoutProps {
   children: ReactNode;
 }
@@ -10,6 +12,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [openExp, setOpenExp] = useState(true);
   const [openType, setOpenType] = useState(false);
   const [openStyle, setOpenStyle] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen w-screen bg-slate-50 overflow-hidden">
@@ -45,7 +49,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <div className="border-t border-gray-200 w-full"></div>
 
           {/* Navigation Link */}
-          <div className="flex items-center gap-2 text-blue-600 hover:bg-blue-100 px-3 py-2 rounded-lg cursor-pointer w-full transition">
+          <div
+            onClick={()=>navigate('/stats')}
+            className="flex items-center gap-2 text-blue-600 hover:bg-blue-100 px-3 py-2 rounded-lg cursor-pointer w-full transition"
+          >
             <FileUser size={18} />
             <span className="text-sm font-medium">Applied Jobs</span>
           </div>
