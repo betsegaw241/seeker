@@ -32,8 +32,8 @@ export default function Login() {
         {/* Form Section */}
         <div className="flex max-w-sm w-[50%] justify-center flex-col items-center space-y-1 bg">
           <InputField
-            id="username"
-            label="Username"
+            id="email"
+            label="Email"
             className="  border-gray-300 rounded-lg w-full "
           />
           <InputField
