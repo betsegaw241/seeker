@@ -7,7 +7,8 @@ interface ButtonProps {
   variant?: ButtonVariant;
   onClick?: () => void;
   disabled?: boolean;
-  children: React.ReactNode; // 👈 Accept children here
+  children: React.ReactNode;
+  className?: string; // <- Add this line
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -22,11 +23,12 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled = false,
   children,
+  className
 }) => {
   return (
     <div
       onClick={onClick}
-      className={`w-100 text-center px-4 py-2 rounded transition duration-200 ${
+      className={`${className}  text-center px-4 py-2 rounded transition duration-200  ${
         variantClasses[variant]
       } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >

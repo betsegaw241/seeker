@@ -1,8 +1,14 @@
 // InputField.jsx
 
-const InputField = ({ id = 'defaultInput',type='text', label = '', placeholder = '', className = '' }) => {
+const InputField = ({
+  id = 'defaultInput',
+  type = 'text',
+  label = '',
+  placeholder = '',
+  className = '',
+}) => {
   return (
-    <div className="w-100">
+    <div className="w-full">
       <label htmlFor={id} className="label-text text-black">
         {label}
       </label>
@@ -10,7 +16,7 @@ const InputField = ({ id = 'defaultInput',type='text', label = '', placeholder =
         type={type}
         id={id}
         placeholder={placeholder}
-        className={`input ${className}`}
+        className={`${className}  bg-transparent border p-2 border-gray-300 rounded-full px-4  text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300`}
       />
     </div>
   );
