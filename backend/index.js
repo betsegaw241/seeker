@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
+import routes from './routes'
 
 // MongoDB Connection
 mongoose.connect('mongodb://localhost:27017/myapp', {
@@ -9,7 +10,7 @@ mongoose.connect('mongodb://localhost:27017/myapp', {
   useUnifiedTopology: true,
 })
 .then(() => console.log('✅ Connected to MongoDB'))
-.catch((err) => console.error('❌ MongoDB connection error:', err));
+.catch((err) => console.error(' MongoDB connection error:', err));
 
 // Middleware
 app.use(express.json());
@@ -23,7 +24,6 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Routes
-
 // Root route
 app.get('/', (req, res) => {
   res.send('Hello from Node.js backend!');
