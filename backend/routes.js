@@ -1,23 +1,9 @@
-import express from 'express';
-
+const express = require('express');
 const router = express.Router();
+const userController = require('./controllers/Users');
 
-router.get('/', getClientsController);
+router.get('/', userController.home);
+router.post('/users', userController.createUser);
+router.get('/users', userController.getUsers);
 
-router.post(
-    '/create',
-    createApplicationValidator(),
-    parseValidationResult,
-    createApplicatioController
-  );
-
-  router.get(
-    '/:applicationId',
-    authenticateJwt,
-    grantAccess('readAny', 'application'),
-    getClientValidator(),
-    parseValidationResult,
-    getApplicationController
-  );
-  
-  export default router;
+module.exports = router;
