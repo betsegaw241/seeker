@@ -1,18 +1,15 @@
 import { useState } from 'react';
-import { Button } from '../Button';
-import InputField from '../input';
+import { Button } from '../Blocks/Button';
+import InputField from '../Blocks/input';
 import mkup from '../../assets/images/mkup.jpg';
-import { useNavigate } from 'react-router-dom';
+import { LoginComponentProps } from './types';
 
-export default function Login() {
-  const navigate = useNavigate();
+const LoginComponent = (props: LoginComponentProps) => {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
 
   return (
     <div className="w-screen h-screen flex bg-white">
-      {/* Form Section - 30% */}
       <div className="w-[50%] flex flex-col justify-center items-center px-6 py-10">
-        {/* Tabs */}
         <div className="flex gap-8 mb-8 cursor-pointer">
           {['login', 'signup'].map((tab) => (
             <p
@@ -29,51 +26,51 @@ export default function Login() {
           ))}
         </div>
 
-        {/* Form Section */}
         <div className="flex max-w-sm w-[50%] justify-center flex-col items-center space-y-1 bg">
-          <InputField
-            id="email"
-            label="Email"
-            className="  border-gray-300 rounded-lg w-full "
-          />
-          <InputField
-            id="password"
-            type="password"
-            label="Password"
-            className="  border-gray-300 rounded-lg w-full"
-          />
+          <form onSubmit={(e) => props.onSubmit(e)} className="w-full">
+            <InputField
+              id="email"
+              label="Email"
+              className="  border-gray-300 rounded-lg w-full "
+            />
+            <InputField
+              id="password"
+              type="password"
+              label="Password"
+              className="  border-gray-300 rounded-lg w-full"
+            />
 
-        
-          <Button
-            onClick={() => navigate('/profile')}
-            className=" mt-6 p-2 rounded-lg w-full"
-            variant="primary"
-          >
-            {activeTab === 'login' ? 'Login' : 'Sign Up'}
-          </Button>
+            <Button
+              type="submit"
+              className=" mt-6 p-2 rounded-lg w-full"
+              variant="primary"
+            >
+              {activeTab === 'login' ? 'Login' : 'Sign Up'}
+            </Button>
 
-  {/* Divider */}
-  <div className="flex items-center w-full my-4">
-    <div className="flex-grow h-px bg-gray-300" />
-    <span className="mx-2 text-sm text-gray-500">or</span>
-    <div className="flex-grow h-px bg-gray-300" />
-  </div>
+            {/* Divider */}
+            <div className="flex items-center w-full my-4">
+              <div className="flex-grow h-px bg-gray-300" />
+              <span className="mx-2 text-sm text-gray-500">or</span>
+              <div className="flex-grow h-px bg-gray-300" />
+            </div>
 
-  {/* Google Button */}
-  <button
-    className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg w-full py-2 hover:bg-gray-100 transition"
-    onClick={() => console.log('Google auth')}
-  >
-    <img
-      src="https://www.svgrepo.com/show/475656/google-color.svg"
-      alt="Google"
-      className="w-5 h-5"
-    />
-    <span className="text-sm text-gray-300">Continue with Google</span>
-  </button>
+            <button
+              className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg w-full py-2 hover:bg-gray-100 transition"
+              onClick={() => console.log('Google auth')}
+            >
+              <img
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                alt="Google"
+                className="w-5 h-5"
+              />
+              <span className="text-sm text-gray-300">
+                Continue with Google
+              </span>
+            </button>
+          </form>
         </div>
 
-        {/* Footer */}
         <div className="mt-6 text-sm text-gray-600 flex gap-1">
           <p>
             {activeTab === 'login'
@@ -91,7 +88,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Image Section - 70% */}
       <div className="w-[50%] flex items-center justify-center">
         <img
           src={mkup}
@@ -101,4 +97,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default LoginComponent;

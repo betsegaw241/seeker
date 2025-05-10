@@ -1,6 +1,6 @@
 import { Bell, ChevronDown, FilePenLine, FileUser } from 'lucide-react';
 import { ReactNode, useState } from 'react';
-import CheckboxFilter from '../checkboxfilter';
+import CheckboxFilter from '../Blocks/checkboxfilter';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
           {/* Navigation Link */}
           <div
-            onClick={()=>navigate('/stats')}
+            onClick={() => navigate('/stats')}
             className="flex items-center gap-2 text-blue-600 hover:bg-blue-100 px-3 py-2 rounded-lg cursor-pointer w-full transition"
           >
             <FileUser size={18} />

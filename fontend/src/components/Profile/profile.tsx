@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DashboardLayout from '../layouts/Layout';
-import ComboBox from '../ComboBox';
-import JobCard from '../JobCard';
+import ComboBox from '../Blocks/ComboBox';
+import JobCard from '../Blocks/JobCard';
 
 const Profile = () => {
   const jobRoles = [

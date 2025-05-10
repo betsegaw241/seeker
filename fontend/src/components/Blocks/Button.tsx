@@ -2,13 +2,9 @@ import React from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
 
-interface ButtonProps {
-  type?: 'button' | 'submit' | 'reset';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  onClick?: () => void;
-  disabled?: boolean;
-  children: React.ReactNode;
-  className?: string; // <- Add this line
+  className?: string;
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -20,19 +16,16 @@ const variantClasses: Record<ButtonVariant, string> = {
 
 export const Button: React.FC<ButtonProps> = ({
   variant = 'secondary',
-  onClick,
-  disabled = false,
+  className = '',
   children,
-  className
+  ...props
 }) => {
   return (
-    <div
-      onClick={onClick}
-      className={`${className}  text-center px-4 py-2 rounded transition duration-200  ${
-        variantClasses[variant]
-      } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+    <button
+      className={`text-center px-4 py-2 rounded transition duration-200 ${variantClasses[variant]} ${className}`}
+      {...props}
     >
       {children}
-    </div>
+    </button>
   );
 };

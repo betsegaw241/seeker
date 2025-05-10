@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Profile from './components/Profile/profile';
-import Login from './components/Login';
+import Login from './pages/login';
 import Statistics from './components/Stats';
 function App() {
   return (
