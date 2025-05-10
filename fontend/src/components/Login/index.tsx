@@ -31,12 +31,16 @@ const LoginComponent = (props: LoginComponentProps) => {
             <InputField
               id="email"
               label="Email"
+              value={props.email}
+              onChange={(e) => props.setEmail(e.target.value)}
               className="  border-gray-300 rounded-lg w-full "
             />
             <InputField
               id="password"
               type="password"
               label="Password"
+              value={props.password}
+              onChange={(e) => props.setPassword(e.target.value)}
               className="  border-gray-300 rounded-lg w-full"
             />
 

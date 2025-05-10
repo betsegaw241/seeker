@@ -5,7 +5,7 @@ import { useLogin } from './login'; // Hook for managing login logic
 
 const Login: React.FC = () => {
   // State to track login form values
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   // Destructure login function and loading state from useLogin hook
@@ -14,14 +14,16 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('login')
+    console.log(email,password)
     e.preventDefault();
-    await login(username, password);
+
+    await login(email, password);
   };
 
   return (
     <LoginComponent
-      username={username}
-      setUsername={setUsername}
+      email={email}
+      setEmail={setEmail}
       password={password}
       setPassword={setPassword}
       onSubmit={handleSubmit}
