@@ -25,6 +25,24 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+//Get user by Id
+exports.getUserById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const user = await User.findById(userId).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
 // Login
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
