@@ -6,11 +6,21 @@ const ERRORS = require('../utils/errorMessages');
 exports.createUser = async (req, res) => {
   console.log('Request Body:', req.body);
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const user = new User({ ...req.body, password: hashedPassword });
+    const { name, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log(hashedPassword, '0---------');
+
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
     const saved = await user.save();
     res.status(201).json(saved);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: ERRORS.BAD_REQUEST });
   }
 };
@@ -42,11 +52,13 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-
 // Login
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log('Login request:', req.body);
+
   try {
+    
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: ERRORS.USER_NOT_FOUND });
@@ -66,13 +78,11 @@ exports.loginUser = async (req, res) => {
       },
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: ERRORS.SERVER_ERROR });
   }
 };
 // add aplication
-
-
-
 
 // Root
 exports.home = (req, res) => {
