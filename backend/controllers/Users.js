@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const ERRORS = require('../utils/errorMessages');
+require('dotenv').config();
+
+const users = [];
 
 // Create user
 exports.createUser = async (req, res) => {
@@ -9,8 +12,6 @@ exports.createUser = async (req, res) => {
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    console.log(hashedPassword, '0---------');
-
     const user = new User({
       name,
       email,
@@ -18,7 +19,15 @@ exports.createUser = async (req, res) => {
     });
 
     const saved = await user.save();
-    res.status(201).json(saved);
+
+    const token = jwt.sign(
+      { id: saved._id, email: saved.email },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
+    );
+    const { password: _, ...userWithoutPassword } = saved.toObject();
+
+    res.status(201).json({ user: userWithoutPassword, token });
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: ERRORS.BAD_REQUEST });
@@ -58,7 +67,6 @@ exports.loginUser = async (req, res) => {
   console.log('Login request:', req.body);
 
   try {
-    
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: ERRORS.USER_NOT_FOUND });
@@ -68,15 +76,11 @@ exports.loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ error: ERRORS.INCORRECT_PASSWORD });
     }
-
-    res.status(200).json({
-      message: 'Login successful',
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+    const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
     });
+
+    res.json({ token });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: ERRORS.SERVER_ERROR });
