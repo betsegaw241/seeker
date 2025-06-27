@@ -5,55 +5,73 @@ interface JobCardProps {
   company?: string;
   jobTitle?: string;
   jobType?: string;
-  location?: string;
+  workLocation?: string;
   notes?: string;
   status?: string;
   date?: string; // e.g., "Apr 30, 2025"
+  interviewDateTime?: string; // New field
   onEdit?: () => void;
 }
 
 const JobCard: React.FC<JobCardProps> = ({
   company = 'Company Name',
   jobTitle = 'Job Title',
-  jobType = 'Full Time',
-  location = 'Onsite',
+  jobType = 'Full-time',
+  workLocation = 'On-site',
   notes = 'Some notes about the job go here.',
   status = 'In Progress',
   date = 'Apr 30, 2025',
+  interviewDateTime,
   onEdit = () => {},
 }) => {
   return (
-    <div className="bg-white shadow-md rounded-2xl p-5 w-[95%] max-w-4xl mx-auto flex justify-center items-center gap-12">
-      {/* Company Info */}
-      <div className="text-left">
-        <p className="text-2xl font-semibold text-gray-800">{company}</p>
-        <p className="text-md text-gray-700">{jobTitle}</p>
-        <div className="flex gap-4 mt-1">
-          <span className="text-sm text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full">
+    <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-gray-100 hover:shadow-xl transition">
+      {/* Left: Job Info */}
+      <div className="flex-1">
+        <h2 className="text-xl font-semibold text-gray-800">{company}</h2>
+        <p className="text-gray-600 mt-0.5">{jobTitle}</p>
+
+        <div className="flex flex-wrap gap-2 mt-2">
+          <span className="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
             {jobType}
           </span>
-          <span className="text-sm text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full">
-            {location}
+          <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
+            {workLocation}
           </span>
         </div>
-        <p className="text-sm text-gray-600 mt-2">{notes}</p>
-        <p className="text-xs text-gray-400 mt-1">📅 {date}</p>
+
+        <p className="text-sm text-gray-500 mt-3">{notes}</p>
+        <p className="text-xs text-gray-400 mt-2">📅 Applied: {date}</p>
+
+        {status === 'Interview' && interviewDateTime && (
+          <p className="text-sm text-purple-600 mt-2 font-medium">
+            🗓️ Interview Scheduled: {interviewDateTime}
+          </p>
+        )}
       </div>
 
-      {/* Progress */}
-      <div className="text-center">
-        <p className="text-base text-gray-700 font-medium">📈 {status}</p>
-      </div>
+      <div className="flex flex-col items-end gap-4">
+        <span
+          className={`text-sm font-semibold px-3 py-1 rounded-full ${
+            status === 'Applied'
+              ? 'bg-yellow-100 text-yellow-700'
+              : status === 'Interview'
+              ? 'bg-purple-100 text-purple-700'
+              : status === 'Rejected'
+              ? 'bg-red-100 text-red-600'
+              : 'bg-gray-100 text-gray-700'
+          }`}
+        >
+          📈 {status}
+        </span>
 
-      {/* Edit Button */}
-      <div>
-        <div
+        <button
           onClick={onEdit}
-          className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition text-gray-700 px-4 py-2 rounded-lg shadow-sm font-medium cursor-pointer"
+          className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition font-medium"
         >
           <PencilLine size={18} />
           Edit
-        </div>
+        </button>
       </div>
     </div>
   );
