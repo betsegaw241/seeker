@@ -1,23 +1,29 @@
 // src/pages/Login.tsx
 import React, { useState } from 'react';
-import LoginComponent from '../../components/Login'; // Make sure Login component is imported
-import { useLogin } from './login'; // Hook for managing login logic
+import LoginComponent from '../../components/Login';
+import { useLogin } from './login';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
-  // State to track login form values
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  // Destructure login function and loading state from useLogin hook
-  const { login, isLoggingIn } = useLogin();
+  const { login, isLoggingIn, signup, isSigningUp } = useLogin();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('login')
-    console.log(email,password)
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await login(email, password);
+    const success = await login(email, password);
+    if (success) {
+      navigate('/profile');
+    }
+  };
+  const handSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    e.preventDefault();
+
+    await signup(email, password);
   };
 
   return (
@@ -26,8 +32,11 @@ const Login: React.FC = () => {
       setEmail={setEmail}
       password={password}
       setPassword={setPassword}
-      onSubmit={handleSubmit}
+      // onSubmit={handleSubmit}
+      onLogin={handleLogin}
+      onSignup={handSignUp}
       isLoggingIn={isLoggingIn}
+      isSigningUp={isSigningUp}
     />
   );
 };
