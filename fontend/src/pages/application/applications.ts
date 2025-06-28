@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import api from '../../config/api'; // Axios instance
-// import { JobApplication } from '../../types'; // optional, if you defined a type
+import api from '../../config/api'; 
 
 export const useApplication = () => {
   const [errorMsg, setErrorMsg] = useState('');

@@ -3,12 +3,13 @@ import DashboardLayout from '../layouts/Layout';
 import ComboBox from '../Blocks/ComboBox';
 import JobCard from '../Blocks/JobCard';
 import { JobApplication } from '../../pages/application/types';
+import { ApplicationComponentProps } from './types';
 
 const Application = ({
-  formData,
-  handleChange,
+  // formData,
+  // handleChange,
   onadd,
-  errorMsg,
+  // errorMsg,
   applications,
 }: ApplicationComponentProps) => {
   const jobRoles = [
@@ -48,9 +49,9 @@ const Application = ({
       alert('Please fill out required fields');
       return;
     }
-  
-    onadd(newJob); // 🔁 call the passed-in prop
-    setShowForm(false); // close modal
+
+    onadd(newJob);
+    setShowForm(false); 
   };
 
   return (
