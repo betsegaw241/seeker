@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const ERRORS = require('../utils/errorMessages');
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 const users = [];
 
@@ -76,9 +77,13 @@ exports.loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ error: ERRORS.INCORRECT_PASSWORD });
     }
-    const token = jwt.sign({ id: user.id, username }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+      }
+    );
 
     res.json({ token });
   } catch (err) {
@@ -86,9 +91,7 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ error: ERRORS.SERVER_ERROR });
   }
 };
-// add aplication
 
-// Root
 exports.home = (req, res) => {
   res.send('Hello from Node.js backend!');
 };
