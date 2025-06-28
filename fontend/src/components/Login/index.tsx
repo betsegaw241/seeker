@@ -9,7 +9,7 @@ const LoginComponent = (props: LoginComponentProps) => {
 
   return (
     <div className="w-screen h-screen flex bg-white">
-      <div className="w-[50%] flex flex-col justify-center items-center px-6 py-10">
+      <div className=" w-full md:w-[50%] flex flex-col justify-center items-center px-6 py-10">
         <div className="flex gap-8 mb-8 cursor-pointer">
           {['login', 'signup'].map((tab) => (
             <p
@@ -27,7 +27,18 @@ const LoginComponent = (props: LoginComponentProps) => {
         </div>
 
         <div className="flex max-w-sm w-[50%] justify-center flex-col items-center space-y-1 bg">
-          <form onSubmit={(e) => props.onSubmit(e)} className="w-full">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault(); // prevent default form submission
+
+              if (activeTab === 'login') {
+                props.onLogin(e); // or your login logic here
+              } else if (activeTab === 'signup') {
+                props.onSignup(e); // or your signup logic here
+              }
+            }}
+            className="w-full"
+          >
             <InputField
               id="email"
               label="Email"
@@ -92,7 +103,7 @@ const LoginComponent = (props: LoginComponentProps) => {
         </div>
       </div>
 
-      <div className="w-[50%] flex items-center justify-center">
+      <div className=" hidden md:flex w-[50%]  items-center justify-center">
         <img
           src={mkup}
           alt="mockup"

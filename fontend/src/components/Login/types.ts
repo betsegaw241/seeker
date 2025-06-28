@@ -5,7 +5,10 @@ export interface LoginComponentProps {
     setEmail: React.Dispatch<React.SetStateAction<string>>;
     password: string;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    onLogin: (e: React.FormEvent<HTMLFormElement>) => void;
+    onSignup: (e: React.FormEvent<HTMLFormElement>) => void;
     isLoggingIn: boolean;
+    isSigningUp: boolean;
+    
   }
   
