@@ -1,6 +1,5 @@
 import { Bell, ChevronDown, FilePenLine, FileUser } from 'lucide-react';
-import { ReactNode, useState } from 'react';
-import CheckboxFilter from '../Blocks/checkboxfilter';
+import { ReactNode } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -9,10 +8,6 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  const [openExp, setOpenExp] = useState(true);
-  const [openType, setOpenType] = useState(false);
-  const [openStyle, setOpenStyle] = useState(false);
-
   const navigate = useNavigate();
 
   return (
@@ -20,21 +15,13 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       {/* Sidebar */}
       <aside className=" mt-15 w-[25%] min-w-[250px] h-full flex flex-col items-center py-4 gap-2">
         {/* Profile Card */}
-        <div className="bg-gradient-to-br from-blue-50 to-white w-[85%] rounded-2xl shadow-lg p-5 flex flex-col items-start gap-4">
+        <div className="bg-gradient-to-br h-[90%] from-blue-50 to-white w-[85%] rounded-2xl shadow-lg p-5 flex flex-col items-start gap-4">
           {/* Header Edit Icon */}
           <div className="self-end hover:bg-blue-100 p-2 rounded-full cursor-pointer text-blue-600">
             <FilePenLine size={20} />
           </div>
 
-          {/* Profile Info */}
-          <div className="flex items-center gap-4">
-            <div>
-              <img
-                src=""
-                alt="Profile"
-                className="bg-gray-400 w-16 h-16 rounded-full"
-              />
-            </div>
+          <div className="flex flex-col align-middle ">
             <div>
               <p className="text-lg font-semibold text-gray-800">
                 Betsegaw Abebe
@@ -56,29 +43,6 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <FileUser size={18} />
             <span className="text-sm font-medium">Applied Jobs</span>
           </div>
-        </div>
-
-        {/* Filters */}
-        <div className="rounded-xl shadow-md overflow-y-auto bg-white justify-start w-[80%]  rounded-1xl text-black mt-2 flex items-center flex-col align-middle  text-center pb-4 mb-20">
-          <CheckboxFilter
-            title="Experience level"
-            isOpen={openExp}
-            toggle={() => setOpenExp(!openExp)}
-            options={['Internship', 'Entry Level', 'Senior', 'Expert level']}
-          />
-          <CheckboxFilter
-            title="Job type"
-            isOpen={openType}
-            toggle={() => setOpenType(!openType)}
-            options={['full-time', 'part-time', 'contract']}
-          />
-
-          <CheckboxFilter
-            title="Work style"
-            isOpen={openStyle}
-            toggle={() => setOpenStyle(!openStyle)}
-            options={['Onsite', 'Remote']}
-          />
         </div>
       </aside>
 
