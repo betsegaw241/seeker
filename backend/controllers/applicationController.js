@@ -1,17 +1,36 @@
 const Application = require('../models/applications');
 const ERRORS = require('../utils/errorMessages');
 
-// Create a new application
+
 exports.createApplication = async (req, res) => {
   try {
-    const { companyName, jobType, jobStyle, role, location } = req.body;
+    const {
+      company,
+      jobTitle,
+      jobType,
+      workLocation,
+      status,
+      date,
+      notes,
+      interviewDateTime,
+    } = req.body;
 
-    const newApp = new Application({ companyName, jobType, jobStyle, role, location });
+    const newApp = new Application({
+      company,
+      jobTitle,
+      jobType,
+      workLocation,
+      status,
+      date,
+      notes,
+      interviewDateTime,
+    });
+console.log(req.body)
     const savedApp = await newApp.save();
-
     res.status(201).json(savedApp);
   } catch (err) {
-    res.status(400).json({ error: ERRORS.BAD_REQUEST });
+    console.error('Create Application Error:', err);
+    res.status(400).json({ error: ERRORS?.BAD_REQUEST || 'Bad request' });
   }
 };
 
