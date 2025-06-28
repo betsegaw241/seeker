@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Profile from './components/Profile/profile';
+import Application from './pages/application/applicationspage';
 import Login from './pages/login';
 import Statistics from './components/Stats';
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Application />} />
         <Route path="/stats" element={<Statistics />} />
       </Routes>
     </BrowserRouter>
