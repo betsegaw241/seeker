@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import DashboardLayout from '../layouts/Layout';
 import ComboBox from '../Blocks/ComboBox';
 import JobCard from '../Blocks/JobCard';
+import { JobApplication } from '../../pages/application/types';
 
-const Profile = () => {
+const Application = ({
+  formData,
+  handleChange,
+  onadd,
+  errorMsg,
+  applications,
+}: ApplicationComponentProps) => {
   const jobRoles = [
     'Frontend Developer',
     'Backend Developer',
@@ -11,43 +18,12 @@ const Profile = () => {
     'UI/UX Designer',
     'Project Manager',
   ];
-
-  const [applications, setApplications] = useState([
-    {
-      company: 'Google',
-      jobTitle: 'Backend Developer',
-      jobType: 'Full Time',
-      location: 'Onsite',
-      notes: "You'll be building scalable backend systems.",
-      status: 'Applied',
-      date: 'May 3, 2025',
-    },
-    {
-      company: 'Amazon',
-      jobTitle: 'Frontend Engineer',
-      jobType: 'Full Time',
-      location: 'Remote',
-      notes: 'Working with React and TypeScript to build UIs.',
-      status: 'Interview',
-      date: 'May 1, 2025',
-    },
-    {
-      company: 'Meta',
-      jobTitle: 'Full Stack Engineer',
-      jobType: 'Full Time',
-      location: 'Hybrid',
-      notes: 'Build features across the stack using modern tools.',
-      status: 'Offer',
-      date: 'April 29, 2025',
-    },
-  ]);
-
   const [showForm, setShowForm] = useState(false);
   const [newJob, setNewJob] = useState({
     company: '',
     jobTitle: '',
     jobType: '',
-    location: '',
+    workLocation: '',
     notes: '',
     status: '',
     date: '',
@@ -68,8 +44,13 @@ const Profile = () => {
   };
 
   const handleAddApplication = () => {
-    setApplications((prevApplications) => [...prevApplications, newJob]);
-    setShowForm(false); // Close the form after adding the job
+    if (!newJob.company || !newJob.jobTitle) {
+      alert('Please fill out required fields');
+      return;
+    }
+  
+    onadd(newJob); // 🔁 call the passed-in prop
+    setShowForm(false); // close modal
   };
 
   return (
@@ -135,8 +116,10 @@ const Profile = () => {
               />
               <ComboBox
                 options={['Remote', 'Onsite', 'Hybrid']}
-                placeholder="Location"
-                onSelect={(value) => setNewJob({ ...newJob, location: value })}
+                placeholder="workLocation"
+                onSelect={(value) =>
+                  setNewJob({ ...newJob, workLocation: value })
+                }
               />
               <ComboBox
                 options={['Applied', 'Interview', 'Offer', 'Rejected']}
@@ -181,22 +164,29 @@ const Profile = () => {
       )}
       /* Job Cards List */
       <div className="bg-slate-50 mt-4 h-screen overflow-y-auto p-4 rounded-lg flex flex-col gap-4">
-        {applications.map((job, index) => (
-          <JobCard
-            key={index}
-            company={job.company}
-            jobTitle={job.jobTitle}
-            jobType={job.jobType}
-            location={job.location}
-            notes={job.notes}
-            status={job.status}
-            date={job.date}
-            onEdit={() => console.log('Edit clicked')}
-          />
-        ))}
+        {applications && applications.length > 0 ? (
+          applications.map(
+            (job: JobApplication, index: React.Key | null | undefined) => (
+              <JobCard
+                key={index}
+                company={job.company}
+                jobTitle={job.jobTitle}
+                jobType={job.jobType}
+                workLocation={job.workLocation}
+                notes={job.notes}
+                status={job.status}
+                date={job.date}
+                interviewDateTime={job.interviewDateTime}
+                onEdit={() => console.log('Edit clicked')}
+              />
+            )
+          )
+        ) : (
+          <p>No applications found.</p>
+        )}
       </div>
     </DashboardLayout>
   );
 };
 
-export default Profile;
+export default Application;
