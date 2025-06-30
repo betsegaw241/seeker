@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import DashboardLayout from '../layouts/Layout';
 import ComboBox from '../Blocks/ComboBox';
 import JobCard from '../Blocks/JobCard';
 import AddApplicationModal from './applicationModal';
-import { JobApplication } from '../../pages/application/types';
+import { Applicationtypes } from '../../pages/application/types';
 import { ApplicationComponentProps } from './types';
 
 const Application = ({ onadd, applications }: ApplicationComponentProps) => {
@@ -56,14 +56,13 @@ const Application = ({ onadd, applications }: ApplicationComponentProps) => {
       {/* Job Cards */}
       <div className="bg-slate-50 mt-4 h-screen overflow-y-auto p-4 rounded-lg flex flex-col gap-4">
         {applications && applications.length > 0 ? (
-          applications.map((job: JobApplication, index) => (
+          applications.map((job: Applicationtypes, index) => (
             <JobCard
               key={index}
               company={job.company}
               jobTitle={job.jobTitle}
               jobType={job.jobType}
               workLocation={job.workLocation}
-              notes={job.notes}
               status={job.status}
               date={job.date}
               interviewDateTime={job.interviewDateTime}

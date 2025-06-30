@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import api from '../../config/api'; 
+import { Applicationtypes } from './types';
 
 export const useApplication = () => {
   const [errorMsg, setErrorMsg] = useState('');
-  const [applications, setApplications] = useState<JobApplication[]>([]);
+  const [applications, setApplications] = useState<Applicationtypes[]>([]);
   const [loading, setLoading] = useState(false);
 
   const addApplication = async (applicationData: {
@@ -21,7 +22,6 @@ export const useApplication = () => {
       setErrorMsg('');
       return true;
     } catch (error) {
-      console.log(error)
       console.error('Add Application Error:', error);
       setErrorMsg('Failed to add application. Please try again.');
       return false;
