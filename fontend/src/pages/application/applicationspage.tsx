@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useApplication } from './applications'; // <-- your custom hook
 import Profile from '../../components/Profile';
+import { Applicationtypes } from './types';
 
 const Applications: React.FC = () => {
-  const { addApplication, getApplications, applications, errorMsg, loading } =
+  const { addApplication, getApplications, applications, errorMsg } =
     useApplication();
 
   // const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ const Applications: React.FC = () => {
   //   setFormData((prev) => ({ ...prev, [name]: value }));
   // };
 
-  const handleaddApplication = async (job: JobApplication) => {
+  const handleaddApplication = async (job: Applicationtypes) => {
     const success = await addApplication(job);
     if (success) {
       getApplications();
@@ -41,7 +42,7 @@ const Applications: React.FC = () => {
       onadd={handleaddApplication}
       errorMsg={errorMsg}
       applications={applications}
-      loading={loading}
+      // loading={loading}
     />
   );
 };
