@@ -21,6 +21,7 @@ export const useApplication = () => {
       setErrorMsg('');
       return true;
     } catch (error) {
+      console.log(error)
       console.error('Add Application Error:', error);
       setErrorMsg('Failed to add application. Please try again.');
       return false;

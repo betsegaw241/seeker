@@ -25,12 +25,11 @@ exports.createApplication = async (req, res) => {
       notes,
       interviewDateTime,
     });
-console.log(req.body)
     const savedApp = await newApp.save();
     res.status(201).json(savedApp);
   } catch (err) {
     console.error('Create Application Error:', err);
-    res.status(400).json({ error: ERRORS?.BAD_REQUEST || 'Bad request' });
+    res.status(400).json({ error: ERRORS?.BAD_REQUEST });
   }
 };
 
