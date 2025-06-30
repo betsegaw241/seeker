@@ -6,7 +6,6 @@ export const applicationSchema = yup.object({
   jobType: yup.string().required('Job type is required'),
   workLocation: yup.string().required('Work location is required'),
   status: yup.string().required('Status is required'),
-  notes: yup.string().optional(),
   date: yup.string().required('Date is required'),
 });
 
