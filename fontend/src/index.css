@@ -17,7 +17,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body, html {
+  @apply text-black;
+}
 a {
   font-weight: 500;
   color: #646cff;

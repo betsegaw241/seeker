@@ -1,5 +1,4 @@
 import  { useState } from 'react';
-import DashboardLayout from '../layouts/Layout';
 import ComboBox from '../Blocks/ComboBox';
 import JobCard from '../Blocks/JobCard';
 import AddApplicationModal from './applicationModal';
@@ -22,7 +21,7 @@ const Application = ({ onadd, applications }: ApplicationComponentProps) => {
   };
 
   return (
-    <DashboardLayout>
+    <>
       {/* Top Bar */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-100 p-6 rounded-xl shadow-md flex flex-wrap justify-between items-center gap-4">
         <p className="text-3xl font-semibold text-gray-800">
@@ -73,7 +72,7 @@ const Application = ({ onadd, applications }: ApplicationComponentProps) => {
           <p>No applications found.</p>
         )}
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

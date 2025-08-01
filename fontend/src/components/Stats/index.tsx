@@ -11,7 +11,6 @@ import {
   Cell,
   Legend,
 } from 'recharts';
-import DashboardLayout from '../layouts/Layout';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,7 +37,7 @@ const Statistics = () => {
   const navigate = useNavigate();
 
   return (
-    <DashboardLayout>
+    <>
       <div className="p-6 text-gray-800">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center justify-center gap-2">
@@ -124,7 +123,7 @@ const Statistics = () => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 
