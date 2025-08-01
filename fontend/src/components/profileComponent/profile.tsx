@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EditProfileForm from './EditProfileForm';
 import CareerTimeline from './CareerTimeline';
+import { Button } from '../Blocks/Button';
 
 interface CareerItem {
   year: string;
@@ -32,19 +33,16 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div className="p-6 w-full mx-auto">
-      <div className="bg-white shadow-md rounded-lg p-6">
+    <div className=" w-full mx-auto h-screen ">
+      <div className="bg-white shadow-md rounded-lg p-6  min-h-[85%] ">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold">{profile.name}</h1>
             <p className="text-black">{profile.profession}</p>
           </div>
-          <button
-            onClick={() => setIsEditing(true)}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
+          <Button variant="primary" onClick={() => setIsEditing(true)}>
             Edit Profile
-          </button>
+          </Button>
         </div>
 
         {isEditing && (

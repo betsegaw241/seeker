@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '../Blocks/Button';
 
 interface CareerItem {
   year: string;
@@ -32,7 +33,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({ profile, onSave, onCa
       <div className="mb-4">
         <label className="block font-medium">Name</label>
         <input
-          className="w-full border p-2 rounded"
+          className="w-[30%] bg-gray-50 outline-0 p-2 rounded"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -41,7 +42,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({ profile, onSave, onCa
       <div className="mb-4">
         <label className="block font-medium">Profession</label>
         <input
-          className="w-full border p-2 rounded"
+          className="w-[30%]  bg-gray-50 outline-0 p-2 rounded "
           value={profession}
           onChange={(e) => setProfession(e.target.value)}
         />
@@ -51,9 +52,9 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({ profile, onSave, onCa
         <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
           Save
         </button>
-        <button onClick={onCancel} type="button" className="bg-gray-300 px-4 py-2 rounded">
+        <Button onClick={onCancel} variant="secondary" >
           Cancel
-        </button>
+        </Button>
       </div>
     </form>
   );
