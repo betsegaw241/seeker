@@ -1,14 +1,15 @@
 import { Bell, ChevronDown, FilePenLine, FileUser } from 'lucide-react';
-import { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
 
-interface DashboardLayoutProps {
-  children: ReactNode;
-}
-
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const DashboardLayout = () => {
   const navigate = useNavigate();
+  const navItems = [
+    { path: '/applications', label: 'Applications' },
+    { path: '/profile', label: 'Profile' },
+    { path: '/stats', label: 'Applied Jobs' },
+  ];
 
   return (
     <div className="flex h-screen w-screen bg-slate-50 overflow-hidden">
@@ -36,23 +37,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <div className="border-t border-gray-200 w-full"></div>
 
           {/* Navigation Link */}
-          <div
-            onClick={() => navigate('/stats')}
-            className="flex items-center gap-2 text-blue-600 hover:bg-blue-100 px-3 py-2 rounded-lg cursor-pointer w-full transition"
-          >
-            <FileUser size={18} />
-            <span className="text-sm font-medium">Applied Jobs</span>
-          </div>
+          <>
+            {navItems.map((item) => (
+              <div
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className="flex items-center gap-2 text-blue-600 hover:bg-blue-100 px-3 py-2 rounded-lg cursor-pointer w-full transition"
+              >
+                <FileUser size={18} />
+                <span className="text-sm font-medium">{item.label}</span>
+              </div>
+            ))}
+          </>
         </div>
       </aside>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-white shadow-sm fixed top-0 left-0 right-0 flex justify-between items-center px-6 py-3 z-10">
           <p className="text-xl font-semibold text-gray-800">GottaWork</p>
 
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <input
               type="text"
               placeholder="Search"
@@ -61,7 +66,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-4 py-1 text-sm shadow-sm transition">
               Search
             </button>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-6">
             <div className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer text-gray-600">
@@ -76,7 +81,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </header>
 
         {/* Content */}
-        <main className="mt-20 overflow-y-auto h-full">{children}</main>
+        <main className="mt-20 overflow-y-auto h-full">{<Outlet />}</main>
       </div>
     </div>
   );
