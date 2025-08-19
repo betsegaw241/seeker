@@ -49,9 +49,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({ profile, onSave, onCa
       </div>
 
       <div className="flex space-x-2">
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
-          Save
-        </button>
+       <Button variant='primary'>Save</Button>
         <Button onClick={onCancel} variant="secondary" >
           Cancel
         </Button>
