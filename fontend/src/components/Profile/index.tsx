@@ -53,7 +53,7 @@ const Application = ({ onadd, applications }: ApplicationComponentProps) => {
       )}
 
       {/* Job Cards */}
-      <div className="bg-slate-50 mt-4 h-screen overflow-y-auto p-4 rounded-lg flex flex-col gap-4">
+      <div className="bg-slate-50 mt-4 h-screen  p-4 rounded-lg flex flex-col gap-4">
         {applications && applications.length > 0 ? (
           applications.map((job: Applicationtypes, index) => (
             <JobCard
