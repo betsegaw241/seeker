@@ -49,29 +49,27 @@ const JobCard: React.FC<JobCardProps> = ({
           </p>
         )}
       </div>
-
       <div className="flex flex-col items-end gap-4">
         <span
           className={`text-sm font-semibold px-3 py-1 rounded-full ${
             status === 'Applied'
               ? 'bg-yellow-100 text-yellow-700'
               : status === 'Interview'
-              ? 'bg-purple-100 text-purple-700'
-              : status === 'Rejected'
-              ? 'bg-red-100 text-red-600'
-              : 'bg-gray-100 text-gray-700'
+                ? 'bg-purple-100 text-purple-700'
+                : status === 'Rejected'
+                  ? 'bg-red-100 text-red-600'
+                  : 'bg-gray-100 text-gray-700'
           }`}
         >
           📈 {status}
         </span>
-
-        <button
-          onClick={onEdit}
-          className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition font-medium"
-        >
-          <PencilLine size={18} />
-          Edit
-        </button>
+      </div>
+      <div
+        onClick={onEdit}
+        className="flex items-center bg-red gap-2 text-sm text-blue-600 hover:text-blue-800 transition font-medium hover:cursor-pointer hover:bg-gray-100 p-2.5  rounded"
+      >
+        <PencilLine size={18} />
+        Edit
       </div>
     </div>
   );
