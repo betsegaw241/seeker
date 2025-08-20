@@ -25,7 +25,7 @@ const JobCard: React.FC<JobCardProps> = ({
   onEdit = () => {},
 }) => {
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-gray-100 hover:shadow-xl transition">
+    <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-gray-100 hover:shadow-xl transition">
       {/* Left: Job Info */}
       <div className="flex-1">
         <h2 className="text-xl font-semibold text-gray-800">{company}</h2>
