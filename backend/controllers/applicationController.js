@@ -55,3 +55,21 @@ exports.getApplicationById = async (req, res) => {
     res.status(500).json({ error: ERRORS.SERVER_ERROR });
   }
 };
+
+exports.editApplication = async (req, res) => {
+  try {
+    const app = await Application.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!app) {
+      return res.status(404).json({ error: 'Application not found' });
+    }
+
+    res.json(app);
+  } catch (err) {
+    res.status(500).json({ error: ERRORS.SERVER_ERROR });
+  }
+};
