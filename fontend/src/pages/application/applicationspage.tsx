@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useApplication } from './applications'; // <-- your custom hook
-import Profile from '../../components/Profile';
+import Profile from '../../components/Application';
 import { Applicationtypes } from './types';
 
 const Applications: React.FC = () => {
