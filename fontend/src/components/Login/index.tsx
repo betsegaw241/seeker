@@ -29,16 +29,24 @@ const LoginComponent = (props: LoginComponentProps) => {
         <div className="flex max-w-sm w-[50%] justify-center flex-col items-center space-y-1 bg">
           <form
             onSubmit={(e) => {
-              e.preventDefault(); // prevent default form submission
+              e.preventDefault(); 
 
               if (activeTab === 'login') {
-                props.onLogin(e); // or your login logic here
+                props.onLogin(e); 
               } else if (activeTab === 'signup') {
-                props.onSignup(e); // or your signup logic here
+                props.onSignup(e); 
               }
             }}
             className="w-full"
           >
+              {activeTab == 'signup' ? <InputField
+              id="name"
+              label="Full Name"
+              onChange={(e) => props.setName(e.target.value)}
+              className="  border-gray-300 rounded-lg w-full "
+            />:'' }
+            
+           
             <InputField
               id="email"
               label="Email"
@@ -54,9 +62,17 @@ const LoginComponent = (props: LoginComponentProps) => {
               onChange={(e) => props.setPassword(e.target.value)}
               className="  border-gray-300 rounded-lg w-full"
             />
+            {activeTab == 'signup' ? 
+            <InputField
+              id="confiormPassword"
+              type="password"
+              label="Confiorm Password"
+              onChange={(e) => props.setConfiormPassword(e.target.value)}
+              className="  border-gray-300 rounded-lg w-full"
+            /> :''}
 
             <Button
-              type="submit"
+              // type="submit"
               className=" mt-6 p-2 rounded-lg w-full"
               variant="primary"
             >
@@ -70,8 +86,8 @@ const LoginComponent = (props: LoginComponentProps) => {
               <div className="flex-grow h-px bg-gray-300" />
             </div>
 
-            <button
-              className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg w-full py-2 hover:bg-gray-100 transition"
+            <div
+              className="flex  items-center justify-center gap-2 border border-gray-300 rounded-lg w-full py-2 hover:bg-gray-100 transition"
               onClick={() => console.log('Google auth')}
             >
               <img
@@ -79,14 +95,14 @@ const LoginComponent = (props: LoginComponentProps) => {
                 alt="Google"
                 className="w-5 h-5"
               />
-              <span className="text-sm text-gray-300">
+              <span className="text-sm text-gray-950">
                 Continue with Google
               </span>
-            </button>
+            </div>
           </form>
         </div>
 
-        <div className="mt-6 text-sm text-gray-600 flex gap-1">
+        <div className="mt-6 text-sm !text-black flex gap-1">
           <p>
             {activeTab === 'login'
               ? "Don't have an account?"
